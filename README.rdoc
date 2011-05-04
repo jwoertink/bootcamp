@@ -1,6 +1,36 @@
 = bootcamp
 
-Description goes here.
+Bootcamp is a gem to help you create one hell of a JavaScript Plugin.
+
+*** This project is in early stages, and doesn't do anything yet.
+
+== The future
+
+You will be able to generate the beginnings of a JavaScript plugin using the library of your choice, or old school JS.
+The gem will 
+  1. pull in the latest version of that library you specified
+  2. Setup all the cool git stuff
+  3. Allow you to push to the JavaScript Headquarters (JSHQ.org)
+
+Squad Leader:
+  This is the main library your plugin depends on (i.e. jQuery)
+
+Fire Team:
+  These are all the dependencies your script will need (not including the main library i.e. jQuery-UI)
+
+Deploying:
+  This sends your script into battle with its team ready for the world to use.
+
+Promotions:
+  These will allow you to bump up the version number because of an upgrade
+  
+Demoting:
+  Take the plugin down a notch because of a downgrade
+
+Sending to the Brig:
+  This is like abandoning the project. Plugins not touched for longer than 12 months should be sent to the brig.
+  
+
 
 == Contributing to bootcamp
  

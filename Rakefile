@@ -17,9 +17,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bootcamp"
   gem.homepage = "http://github.com/jwoertink/bootcamp"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "jeremy.woertink@cardplayer.com"
+  gem.summary = "A gem to manage JavaScript Plugins"
+  gem.description = "Check out the README file for more info"
+  gem.email = "jeremywoertink@gmail.com"
   gem.authors = ["Jeremy Woertink"]
   # dependencies defined in Gemfile
 end
