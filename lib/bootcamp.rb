@@ -1,20 +1,23 @@
 require 'rubygems'
-require 'highline'
-
-require './bootcamp/drill_instructor'
+require 'highline/import'
+require 'thor'
+require 'bootcamp/drill_instructor'
 
 module Bootcamp
   
-  class Enlistee < Thor::Group
+  # Enlistee will be the body of information for the plugin being created
+  # 
+  class Enlistee < Thor
     include DrillInstructor
     
     class << self
       
-      def run
+      def run!(*args)
+        options = DrillInstructor.inspect_args(args)
+        puts options
         choose do |menu|
           menu.prompt = "Choose your framework"
-          menu.choice(:jquery) { say("yay jquery") }
-          menu.choices(:mootools, :prototype) { say("Not jquery?") }
+          menu.choices(:jquery) { |framework| puts framework }
         end
       end
       

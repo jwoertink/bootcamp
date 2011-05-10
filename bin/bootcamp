@@ -4,4 +4,4 @@ require 'rubygems'
 $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'bootcamp'
 
-Bootcamp::Enlistee.run
+Bootcamp::Enlistee.run!(*ARGV)
