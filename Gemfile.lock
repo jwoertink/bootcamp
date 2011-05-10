@@ -3,12 +3,12 @@ GEM
   specs:
     diff-lcs (1.1.2)
     git (1.2.5)
+    highline (1.6.1)
     jeweler (1.6.0)
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
     rake (0.8.7)
-    rcov (0.9.9)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
@@ -17,6 +17,8 @@ GEM
     rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.3.0)
+    shoulda (2.11.3)
+    thor (0.14.6)
     yard (0.6.8)
 
 PLATFORMS
@@ -24,7 +26,11 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0.0)
+  git
+  highline
   jeweler (~> 1.6.0)
-  rcov
+  rake
   rspec (~> 2.3.0)
+  shoulda
+  thor
   yard (~> 0.6.0)
