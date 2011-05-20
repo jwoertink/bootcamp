@@ -2,7 +2,7 @@
 
 Bootcamp is a gem to help you create one hell of a JavaScript Plugin.
 
-*** This project is in early stages, and doesn't do anything yet.
+*** This project is in early stages, and doesn't do anything yet. These notes may change at any time.
 
 == The future
 

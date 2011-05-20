@@ -1,21 +1,33 @@
-require 'git'
-require 'optparse'
-#require 'erb'
-
-# DrillInstructor should take care of the heavy lifting
-# Use all the Thor::Actions
-# setup the initial git repo
-# Create the project
+require 'thor'
 
 module Bootcamp
-  module DrillInstructor
+  
+  # Yeah, that's right. 
+  # DrillInstructors are decendants of Thor!
+  class DrillInstructor < Thor
     include Thor::Actions
     
-    def self.inspect_args(args)
-      option = Option.new(:flag, :names => %w(--framework -f), :opt_found => true, :opt_not_found => false)
-      # How the hell does the OptionParser work?!? Examples out there blow.
-      argument_opts = OptionParser.getopts(args)
+    desc "new [PROJECT]", "Create a new JSHQ Project"
+    def new(project)
+      opts = options.dup
+      say "OPTIONS! #{opts}"
     end
     
+    desc "version", "Shows the version of bootcamp"
+    def version
+      say "Version: #{Bootcamp::VERSION}"
+    end
+    map %w(-v --version) => :version
+    
+    
+    # Other things the drill instructor will do
+    #
+    #  1. Create the project folder
+    #  2. Make the recruit go fetch any libraries needed
+    #  3. Setup the git repo
+    #  4. Send project to the JSHQ
+    
+    
   end
+  
 end
