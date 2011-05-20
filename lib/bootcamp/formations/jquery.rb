@@ -1,6 +1,7 @@
 # This is the jquery template
 append_file "#{name}/lib/#{name}.js" do
-<<-JS\n
+<<-JS
+
 (function($) {
   $.extend($.fn, {
 		#{name}: function() {

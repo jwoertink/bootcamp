@@ -1,6 +1,7 @@
 # This is the core template
 append_file "#{name}/lib/#{name}.js" do
-<<-JS\n
+<<-JS
+
 (function() {
   
   var #{name} = function() {

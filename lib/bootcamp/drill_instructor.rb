@@ -9,6 +9,7 @@ module Bootcamp
     
     argument :name
     class_option :framework, :default => :core, :aliases => ["-f"]
+    class_option :test_suite, :default => :jasmine, :aliases => ["-t"]
     
     # Other things the drill instructor will do
     #
@@ -21,14 +22,11 @@ module Bootcamp
       File.dirname(__FILE__)
     end
     
-    def self.project_path
-      "#{name}"
-    end
-    
     def create_project
       create_file File.join(name, 'lib', "#{name}.js")
       create_file File.join(name, "README")
       empty_directory File.join(name, 'vendor')
+      empty_directory File.join(name, 'tests')
     end
     
     def get_library
