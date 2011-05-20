@@ -14,7 +14,7 @@ module Bootcamp
     end
     
     def root
-      File.expand_path(File.join(File.dirname(__FILE__), '..'))
+      File.expand_path(File.join(File.dirname(__FILE__), '..')).to_s
     end
   end
 end

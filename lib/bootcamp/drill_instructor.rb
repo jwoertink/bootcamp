@@ -32,29 +32,16 @@ module Bootcamp
     end
     
     def get_library
-      #@recruit = Bootcamp::Recruit.new({:unit => options[:framework]})
-      #@recruit.recon_library
       library = "#{options[:framework]}.js"
-      copy_file File.join(Bootcamp.root, 'vendor', library), File.join(DrillInstructor.project_path, 'vendor')
+      copy_file File.join(Bootcamp.root, 'vendor', library), File.join(name, 'vendor', library)
     end
     
     def setup_template
-      create_file File.join(name, "index.html") do
-        <<-HTML
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>#{name.upcase} Javascript Plugin</title>
-            <meta charset="utf-8">
-          </head>
-          <body>
-            <h1>Hello World</h1>
-            <script charset="utf-8" src="vendor/#{options[:framework]}.js"></script>
-            <script charset="utf-8" src="lib/#{name}.js"></script>
-          </body>
-        </html>
-        HTML
-      end
+      apply File.expand_path("formations/html.rb", __FILE__)
+    end
+    
+    def setup_plugin
+      apply File.expand_path("formations/#{options[:framework]}.rb")
     end
     
   end
