@@ -37,11 +37,11 @@ module Bootcamp
     end
     
     def setup_template
-      apply File.expand_path("formations/html.rb", __FILE__)
+      apply File.expand_path("formations/html.rb", File.dirname(__FILE__))
     end
     
     def setup_plugin
-      apply File.expand_path("formations/#{options[:framework]}.rb")
+      apply File.expand_path("formations/#{options[:framework]}.rb", File.dirname(__FILE__))
     end
     
   end

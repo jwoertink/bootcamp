@@ -1,4 +1,4 @@
-create_file "index.html" do
+create_file "#{name}/index.html" do
 <<-HTML
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,11 @@
 # This is the core template
-append_file "vendor/core.js" do
-<<-JS
+append_file "#{name}/lib/#{name}.js" do
+<<-JS\n
 (function() {
+  
+  var #{name} = function() {
+    alert('hello world');
+  };
   
 })();
 JS
