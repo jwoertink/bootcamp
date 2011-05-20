@@ -17,7 +17,9 @@ module Bootcamp
     
     #Get the library based off the unit
     def recon_library
+      puts "Getting library #{unit}"
       
+      puts "Mission complete!"
     end
     
   end
