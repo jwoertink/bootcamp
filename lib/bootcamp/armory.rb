@@ -7,8 +7,8 @@ module Bootcamp
     
     attr_accessor :git
     
-    def initialize(project)
-      @git = Git.init(project)
+    def initialize
+      @git = Git.init
     end
     
     def checkin

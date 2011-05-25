@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bootcamp/drill_instructor'
 require 'bootcamp/recruit'
+require 'bootcamp/armory'
 
 module Bootcamp
   VERSION = File.read(File.join(File.dirname(__FILE__), "..", "VERSION"))
