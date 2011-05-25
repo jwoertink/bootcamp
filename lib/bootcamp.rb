@@ -8,8 +8,10 @@ module Bootcamp
   class << self
     def to_s
       <<-HELP
-      This is the help menu
-      bla bla.....
+      Usage:
+        bootcamp PROJECT_NAME [-f framework] [-t test_suite]
+      Example:
+        bootcamp cool_new_plugin -f jquery -t jasmine
       HELP
     end
     

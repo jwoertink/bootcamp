@@ -8,6 +8,7 @@ create_file "#{name}/index.html" do
   </head>
   <body>
     <h1>Hello World</h1>
+    <button onclick="">TEST</button>
     <script charset="utf-8" src="vendor/#{options[:framework]}.js"></script>
     <script charset="utf-8" src="lib/#{name}.js"></script>
   </body>
