@@ -11,8 +11,7 @@ module Bootcamp
       <<-HELP
       Usage:
         bootcamp PROJECT_NAME [-f framework] [-t test_suite]
-      Example:
-        bootcamp cool_new_plugin -f jquery -t jasmine
+      
       HELP
     end
     

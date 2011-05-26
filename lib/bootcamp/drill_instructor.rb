@@ -8,8 +8,8 @@ module Bootcamp
     include Thor::Actions
     
     argument :name
-    class_option :framework, :default => :core, :aliases => ["-f"]
-    class_option :test_suite, :default => :jasmine, :aliases => ["-t"]
+    class_option :framework, :default => :core, :aliases => ["-f"], :desc => 'select your framework of choice. Core JS is default'
+    class_option :test_suite, :default => :jasmine, :aliases => ["-t"], :desc => 'select your testing suite of choice. Jasmie is default'
     
     # Other things the drill instructor will do
     #
