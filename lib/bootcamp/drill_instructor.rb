@@ -8,15 +8,9 @@ module Bootcamp
     include Thor::Actions
     
     argument :name
-    class_option :framework, :default => :core, :aliases => ["-f"], :desc => 'select your framework of choice. Core JS is default'
-    class_option :test_suite, :default => :jasmine, :aliases => ["-t"], :desc => 'select your testing suite of choice. Jasmie is default'
+    class_option :framework, :default => :core, :aliases => ["-f"]
+    class_option :test_suite, :default => :jasmine, :aliases => ["-t"]
     
-    # Other things the drill instructor will do
-    #
-    #  1. Create the project folder
-    #  2. Make the recruit go fetch any libraries needed
-    #  3. Setup the git repo
-    #  4. Send project to the JSHQ
     
     def self.source_root
       File.dirname(__FILE__)

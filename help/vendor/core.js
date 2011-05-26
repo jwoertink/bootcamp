@@ -1,1 +1,0 @@
-// I could fill this with some helpers people use without a framework
