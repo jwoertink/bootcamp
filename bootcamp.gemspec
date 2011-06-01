@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/bootcamp",
+    "bootcamp.gemspec",
     "lib/bootcamp.rb",
     "lib/bootcamp/armory.rb",
     "lib/bootcamp/drill_instructor.rb",
