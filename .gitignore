@@ -8,6 +8,7 @@ doc
 pkg
 tmtags
 sandbox
+Gemfile.lock
 
 *.tmproj
 *.swp
