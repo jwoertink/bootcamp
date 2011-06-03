@@ -1,3 +1,16 @@
-1. Run "bootcamp"
-  $ bootcamp project_name
-  
+plugin manifest
+
+.gitignore
+VERSION
+README
+LICENSE.txt
+lib
+- plugin
+vendor
+- library
+tests
+- suite
+sandbox
+- index.html
+- styles.css
+
