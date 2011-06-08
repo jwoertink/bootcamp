@@ -1,33 +1,42 @@
-
 module Bootcamp
   
   # A recruit is only given orders by a drill instructor
   class Recruit
-    include Thor::Actions
     
-    destination_root = File.dirname(__FILE__)
+    module Tasks
+     
+      def self.included(base)
+        base.extend ClassMethods
+      end
+      
+      module ClassMethods
+        
+        def setup_project(orders = {})
+          
+        end
+        
+      end
+    
+    end
+    
+    attr_accessor :project, :framework, :test_suite, :tasks
+    
+    def self.setup_project(orders)
+      
+    end
     
     #orders are the options given to a recruit
     def initialize(orders = {})
       @project = orders[:project]
       @framework = orders[:framework]
       @test_suite = orders[:test_suite]
-    end
-    
-    def project
-      @project
-    end
-    
-    def framework
-      @framework
-    end
-    
-    def test_suite
-      @test_suite
+      @tasks = Depot.new
+      @tasks.orders.merge!(orders)
     end
     
     def setup_project
-      apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
+      tasks.say("setup project, aye sir!", :yellow)
+      tasks.apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
     end
     
     #Get the library based off the unit

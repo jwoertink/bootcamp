@@ -1,3 +1,5 @@
+say("bootstrapping #{orders[:project]}", :blue)
+
 #create_file File.join(project, 'lib', "#{project}.js")
 # create_file File.join(name, '.gitignore') do
 #   <<-GIT

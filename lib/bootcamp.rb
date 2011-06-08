@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'thor'
+require 'bootcamp/depot'
 require 'bootcamp/drill_instructor'
 require 'bootcamp/recruit'
 require 'bootcamp/armory'
