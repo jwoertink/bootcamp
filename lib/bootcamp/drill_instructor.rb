@@ -5,7 +5,7 @@ module Bootcamp
     source_root File.dirname(__FILE__)
     
     desc "new [PROJECT]", "creates a new project with the name PROJECT"
-    map "-n" => :new
+    map "n" => :new
     method_options %w(framework -f) =>  "core"
     method_options %w(test_suite -t) => "jasmine"
     def new(project = "hello_world")
@@ -14,12 +14,11 @@ module Bootcamp
       apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
       apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
       apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
-      #armory = Armory.new
-      #armory.checkin
+      armory = Armory.new
+      armory.checkin
     end
     
     desc "promote PROJECT [LEVEL]", "give your PROJECT a promotion updating the verion by patch, minor, or major"
-    map "-p" => :promote
     method_options %w(level -l) => "patch"
     def promote(project)
       # :patch, :minor, :major
@@ -29,15 +28,18 @@ module Bootcamp
     end
     
     desc "compress PROJECT", "minify the scripts for PROJECT"
-    map "-c" => :compress
     def compress(project)
       say "Compression not ready yet", :red
     end
     
     desc "deploy PROJECT", "deploys the PROJECT to JSHQ.org"
-    map "-d" => :deploy
     def deploy(project)
       say "Deployment not ready yet", :red
+    end
+    
+    desc "convert PROJECT", "converts PROJECT into CoffeeScript"
+    def convert(project)
+      say "Conversions not ready yet", :red
     end
   
   end
