@@ -1,10 +1,10 @@
 # This is the jquery template
-append_file "#{name}/lib/#{name}.js" do
+append_file "#{@project}/lib/#{@project}.js" do
 <<-JS
 
 (function($) {
   $.extend($.fn, {
-		#{name}: function() {
+		#{@project}: function() {
 		  alert('hello world');
 	  }
 	});

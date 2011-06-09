@@ -1,10 +1,10 @@
 # This is the core template
-append_file "#{name}/lib/#{name}.js" do
+append_file "#{@project}/lib/#{@project}.js" do
 <<-JS
 
 (function() {
   
-  var #{name} = function() {
+  var #{@project} = function() {
     alert('hello world');
   };
   

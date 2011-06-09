@@ -2,22 +2,17 @@ module Bootcamp
   
   # DrillInstructor controls the bootcamp with all the different commands
   class DrillInstructor < Bootcamp::Depot
+    source_root File.dirname(__FILE__)
     
     desc "new [PROJECT]", "creates a new project with the name PROJECT"
     map "-n" => :new
     method_options %w(framework -f) =>  "core"
     method_options %w(test_suite -t) => "jasmine"
     def new(project = "hello_world")
-      say "Generating #{project} plugin", :blue
-      Recruit.setup_project(options)
-      # framework = options[:framework]
-      # test_suite = options[:test_suite]
-      # recruit = Recruit.new({:project => project, :framework => framework, :test_suite => test_suite})
-      # recruit.setup_project
-      # recruit.recon_library
-      # recruit.lay_templates
-      # recruit.initialize_plugin
-      # recruit.prepare_tests
+      @project = project
+      say "Generating #{@project} plugin", :blue
+      apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
+      apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
       #armory = Armory.new
       #armory.checkin
     end

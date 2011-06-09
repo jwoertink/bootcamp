@@ -1,23 +1,9 @@
+# going back to not using this file until I can figure out a better way 
+
 module Bootcamp
   
   # A recruit is only given orders by a drill instructor
   class Recruit
-    
-    module Tasks
-     
-      def self.included(base)
-        base.extend ClassMethods
-      end
-      
-      module ClassMethods
-        
-        def setup_project(orders = {})
-          
-        end
-        
-      end
-    
-    end
     
     attr_accessor :project, :framework, :test_suite, :tasks
     
@@ -31,7 +17,7 @@ module Bootcamp
       @framework = orders[:framework]
       @test_suite = orders[:test_suite]
       @tasks = Depot.new
-      @tasks.orders.merge!(orders)
+      @tasks.orders.merge!(orders) # this fails because @tasks.orders is a frozen hash >_<
     end
     
     def setup_project
