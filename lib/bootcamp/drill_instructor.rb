@@ -15,7 +15,6 @@ module Bootcamp
       apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
       apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
       armory = Armory.new
-      armory.checkin
     end
     
     desc "promote PROJECT [LEVEL]", "give your PROJECT a promotion updating the verion by patch, minor, or major"
