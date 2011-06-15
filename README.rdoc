@@ -2,27 +2,27 @@
 
 Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage it.
 
-_This project is in early stages, and may change quite a bit still_
+**This project is in early stages, and may change quite a bit still
 
 = Installation
 
   gem install bootcamp
   
 == Usage
-* Brings up the help menu
+Brings up the help menu
 
   $ bootcamp
   $ bootcamp help
   $ bootcamp -h
   
 
-* Generate a new core javascript plugin
+Generate a new core javascript plugin
 
   $ bootcamp generate some_plugin_name
   $ bootcamp g some_cool_plugin
 
 
-* Specifying a framework (only these available for now)
+Specifying a framework (only these available for now)
 
   $ bootcamp g my_plugin -f jquery
   $ bootcamp g my_plugin -f prototype
@@ -31,7 +31,7 @@ _This project is in early stages, and may change quite a bit still_
   $ bootcamp g my_plugin -f midori
 
 
-* Specifying a testing suite (only these available for now)
+Specifying a testing suite (only these available for now)
 
   $ bootcamp g my_plugin -t jasmine    # This is the default test suite
   $ bootcamp g my_plugin -t jspec
@@ -39,26 +39,26 @@ _This project is in early stages, and may change quite a bit still_
   
 
 == The future
-_These features are only future ideas. None of these are implemented yet_
+**These features are only future ideas. None of these are implemented yet
 
-* Promoting will allow you to update the version of your plugin.
+Promoting will allow you to update the version of your plugin.
 
   $ bootcamp promote my_plugin -l patch
   $ bootcamp promote my_plugin -l minor
   $ bootcamp promote my_plugin -l major
 
 
-* Compression will allow you to minify your scripts for production use.
+Compression will allow you to minify your scripts for production use.
 
   $ bootcamp compress my_plugin
   
 
-* Deployment will allow you to ship your plugin off to the JavaScript Headquarters (JSHQ)
+Deployment will allow you to ship your plugin off to the JavaScript Headquarters (JSHQ)
 
   $ bootcamp deploy my_plugin
   
 
-* Converting will allow you to create a CoffeeScript version of your plugin
+Converting will allow you to create a CoffeeScript version of your plugin
 
   $ bootcamp convert my_plugin
   
