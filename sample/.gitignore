@@ -1,0 +1,5 @@
+.DS_Store
+*.tmproj
+tmtags
+*.swp
+**/Thumbs.db
