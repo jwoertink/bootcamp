@@ -22,7 +22,7 @@ module Bootcamp
     end
     
     #Read proper manifest documents
-    def lay_templates      
+    def run_manifest
     end
     
     #Set actual plugin

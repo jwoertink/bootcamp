@@ -1,36 +1,53 @@
 = bootcamp
 
-Bootcamp is a gem to help you create one hell of a JavaScript Plugin.
+Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage it.
 
-*This project is in early stages. You may download and install it to play with it though. Run with `bootcamp PLUGIN_NAME -f jquery -t qunit`
+*This project is in early stages, and may change quite a bit still*
+
+= Installation
+
+  gem install bootcamp
+  
+== Usage
+- Brings up the help menu
+  $ bootcamp
+  $ bootcamp help
+  $ bootcamp -h
+  
+- Generate a new core javascript plugin
+  $ bootcamp generate some_plugin_name
+  $ bootcamp g some_cool_plugin
+
+- Specifying a framework (only these available for now)
+  $ bootcamp g my_plugin -f jquery
+  $ bootcamp g my_plugin -f prototype
+  $ bootcamp g my_plugin -f dojo
+  $ bootcamp g my_plugin -f mootools
+  $ bootcamp g my_plugin -f midori
+
+- Specifying a testing suite (only these available for now)
+  $ bootcamp g my_plugin -t jasmine    # This is the default test suite
+  $ bootcamp g my_plugin -t jspec
+  $ bootcamp g my_plugin -t qunit
+  
 
 == The future
+*These features are only future ideas. None of these are implemented yet*
 
-You will be able to generate the beginnings of a JavaScript plugin using the library of your choice, or old school JS.
-The gem will 
-  1. pull in the latest version of that library you specified
-  2. Setup all the cool git stuff
-  3. Allow you to push to the JavaScript Headquarters (JSHQ.org)
+- Promoting will allow you to update the version of your plugin.
+  $ bootcamp promote my_plugin -l patch
+  $ bootcamp promote my_plugin -l minor
+  $ bootcamp promote my_plugin -l major
 
-Squad Leader:
-  This is the main library your plugin depends on (i.e. jQuery)
-
-Fire Team:
-  These are all the dependencies your script will need (not including the main library i.e. jQuery-UI)
-
-Deploying:
-  This sends your script into battle with its team ready for the world to use.
-
-Promotions:
-  These will allow you to bump up the version number because of an upgrade
+- Compression will allow you to minify your scripts for production use.
+  $ bootcamp compress my_plugin
   
-Demoting:
-  Take the plugin down a notch because of a downgrade
-
-Sending to the Brig:
-  This is like abandoning the project. Plugins not touched for longer than 12 months should be sent to the brig.
+- Deployment will allow you to ship your plugin off to the JavaScript Headquarters (JSHQ)
+  $ bootcamp deploy my_plugin
   
-
+- Converting will allow you to create a CoffeeScript version of your plugin
+  $ bootcamp convert my_plugin
+  
 
 == Contributing to bootcamp
  

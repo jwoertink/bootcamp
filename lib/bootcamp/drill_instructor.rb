@@ -4,11 +4,11 @@ module Bootcamp
   class DrillInstructor < Bootcamp::Depot
     source_root File.dirname(__FILE__)
     
-    desc "new [PROJECT]", "creates a new project with the name PROJECT"
-    map "n" => :new
+    desc "generate [PROJECT]", "creates a new project with the name PROJECT"
+    map "g" => :generate
     method_options %w(framework -f) =>  "core"
     method_options %w(test_suite -t) => "jasmine"
-    def new(project = "hello_world")
+    def generate(project = "hello_world")
       @project = project
       say "Generating #{@project} plugin", :blue
       apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
