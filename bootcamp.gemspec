@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bootcamp}
-  s.version = "0.1.0"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeremy Woertink"]
-  s.date = %q{2011-06-01}
+  s.date = %q{2011-06-15}
   s.default_executable = %q{bootcamp}
   s.description = %q{Check out the README file for more info}
   s.email = %q{jeremywoertink@gmail.com}
@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
     ".rspec",
     ".rvmrc",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "NOTES",
     "README.rdoc",
@@ -33,10 +32,16 @@ Gem::Specification.new do |s|
     "bootcamp.gemspec",
     "lib/bootcamp.rb",
     "lib/bootcamp/armory.rb",
+    "lib/bootcamp/depot.rb",
     "lib/bootcamp/drill_instructor.rb",
-    "lib/bootcamp/formations/core.rb",
-    "lib/bootcamp/formations/html.rb",
-    "lib/bootcamp/formations/jquery.rb",
+    "lib/bootcamp/manifest/bootstrap.rb",
+    "lib/bootcamp/manifest/core.rb",
+    "lib/bootcamp/manifest/dojo.rb",
+    "lib/bootcamp/manifest/html.rb",
+    "lib/bootcamp/manifest/jquery.rb",
+    "lib/bootcamp/manifest/midori.rb",
+    "lib/bootcamp/manifest/mootools.rb",
+    "lib/bootcamp/manifest/prototype.rb",
     "lib/bootcamp/recruit.rb",
     "spec/bootcamp_spec.rb",
     "spec/spec_helper.rb",
