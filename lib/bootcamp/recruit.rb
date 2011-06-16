@@ -15,6 +15,10 @@ module Bootcamp
     
     #Create project files and folders
     def setup_project
+      say "It's WORKING!", :green
+      #apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
+      #apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
+      #apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
     end
     
     #Get the library based off the project

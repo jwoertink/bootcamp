@@ -11,9 +11,11 @@ module Bootcamp
     def generate(project = "hello_world")
       @project = project
       say "Generating #{@project} plugin", :blue
-      apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
-      apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
-      apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
+      # apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
+      # apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
+      # apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
+      r = Recruit.new({:project => @project, :framework => options[:framework], :test_suite => options[:test_suite]})
+      r.setup_project
       armory = Armory.new
       
     end
