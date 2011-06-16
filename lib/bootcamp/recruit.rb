@@ -3,6 +3,7 @@ module Bootcamp
   # A recruit is only given orders by a drill instructor
   class Recruit
     include Depot::Tasks
+    source_root File.dirname(__FILE__)
     
     attr_accessor :project, :framework, :test_suite
     
@@ -15,10 +16,11 @@ module Bootcamp
     
     #Create project files and folders
     def setup_project
-      say "It's WORKING!", :green
-      #apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
-      #apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
-      #apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
+      say "Setting up project", :yellow
+      # thor/actions.rb:102:in `destination_root': undefined method `last' for nil:NilClass (NoMethodError)
+      apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
+      apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
+      apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
     end
     
     #Get the library based off the project
