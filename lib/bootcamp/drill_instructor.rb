@@ -41,6 +41,12 @@ module Bootcamp
     def convert(project)
       say "Conversions not ready yet", :red
     end
+    
+    desc "version", "displays the bootcamp version"
+    map "-v" => :version
+    def version
+      say "Bootcamp Version: #{Bootcamp::VERSION}", :green
+    end
   
   end
 end
