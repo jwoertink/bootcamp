@@ -1,6 +1,7 @@
 module Bootcamp
   
   # The Whiskey Locker is like a utility closet
+  # Put misc methods in here.
   module WhiskeyLocker
     # ANSI colors http://www.termsys.demon.co.uk/vtansi.htm
     COLORS = {

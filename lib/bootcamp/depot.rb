@@ -1,5 +1,6 @@
 module Bootcamp
   
+  # The Depot is where the Recruits get their tasks from
   class Depot < Bootcamp::Base
     
     module Drills  
@@ -19,6 +20,13 @@ module Bootcamp
           # This is for the option parsing. might need to move this
         end
         
+        def method_options(options = {})
+          # additional options available for a task
+        end
+        
+        def apply(formation)
+          # This should take a template (formation) and run all the code in there
+        end
         
         
       end

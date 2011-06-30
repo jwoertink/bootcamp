@@ -1,12 +1,13 @@
 module Bootcamp
   
+  # The Recruit will do all of the actual work.
   class Recruit < Bootcamp::Depot
     include Depot::Drills
     
     desc "generate [PROJECT]", "creates a new project with the name PROJECT"
     map "g" => :generate
-    #method_options %w(framework -f) =>  "core"
-    #method_options %w(test_suite -t) => "jasmine"
+    method_options %w(framework -f) =>  "core"
+    method_options %w(test_suite -t) => "jasmine"
     def generate(project = "hello_world")
       @project = project
       soundoff("Generating #{project}", :yellow)

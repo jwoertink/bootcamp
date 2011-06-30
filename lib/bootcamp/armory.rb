@@ -4,9 +4,9 @@ module Bootcamp
   
   # The Armory is where the repo will be held
   class Armory
-    
     attr_accessor :git
     
+    # Make the plugin repo, and do the first commit
     def initialize
       @git = Git.init
       checkin("First Commit")
