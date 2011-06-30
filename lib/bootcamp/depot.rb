@@ -1,20 +1,28 @@
 module Bootcamp
   
-  class Depot < Thor
-    include Thor::Actions
-    source_root File.dirname(__FILE__)
+  class Depot < Bootcamp::Base
     
-    module Tasks
-      
+    module Drills  
       def self.included(base)
-        base.send :include, Thor::Base
-        base.send :include, Thor::Actions
         base.send :extend, ClassMethods
       end
       
       module ClassMethods
+        
+        # 'how' to run the method, and 'what' it does
+        def description(how, what)
+          # need to set these so when the help menu is called, it will pull this info
+        end
+        alias :desc :description
+        
+        def map(options = {})
+          # This is for the option parsing. might need to move this
+        end
+        
+        
+        
       end
-      
+    
     end
   end
 end

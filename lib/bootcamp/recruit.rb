@@ -1,43 +1,51 @@
 module Bootcamp
   
-  # A recruit is only given orders by a drill instructor
-  class Recruit
-    include Depot::Tasks
-    source_root File.dirname(__FILE__)
+  class Recruit < Bootcamp::Depot
+    include Depot::Drills
     
-    attr_accessor :project, :framework, :test_suite
-    
-    #orders are the options given to a recruit
-    def initialize(orders = {})
-      self.class.instance_methods.each do |meth|
-        instance_variable_set("@#{meth}", orders[meth]) if orders.key?(meth)
+    desc "generate [PROJECT]", "creates a new project with the name PROJECT"
+    map "g" => :generate
+    #method_options %w(framework -f) =>  "core"
+    #method_options %w(test_suite -t) => "jasmine"
+    def generate(project = "hello_world")
+      @project = project
+      soundoff("Generating #{project}", :yellow)
+      DrillInstructor.formations_with(options[:framework]).each do |formation|
+        #apply(formation)
       end
+      
+      #armory_checkin
     end
-    
-    #Create project files and folders
-    def setup_project
-      say "Setting up project", :yellow
-      # thor/actions.rb:102:in `destination_root': undefined method `last' for nil:NilClass (NoMethodError)
-      apply File.expand_path(File.join("manifest", "bootstrap.rb"), File.dirname(__FILE__))
-      apply File.expand_path("manifest/html.rb", File.dirname(__FILE__))
-      apply File.expand_path("manifest/#{options[:framework]}.rb", File.dirname(__FILE__))
-    end
-    
-    #Get the library based off the project
-    def recon_library
-    end
-    
-    #Read proper manifest documents
-    def run_manifest
-    end
-    
-    #Set actual plugin
-    def initialize_plugin
-    end
-    
-    #Create plugin tests
-    def prepare_tests
-    end
+    # 
+    # desc "promote PROJECT [LEVEL]", "give your PROJECT a promotion updating the verion by patch, minor, or major"
+    # method_options %w(level -l) => "patch"
+    # def promote(project)
+    #   # :patch, :minor, :major
+    #   level = options[:level]
+    #   
+    #   say "Promotions not ready yet", :red
+    # end
+    # 
+    # desc "compress PROJECT", "minify the scripts for PROJECT"
+    # def compress(project)
+    #   say "Compression not ready yet", :red
+    # end
+    # 
+    # desc "deploy PROJECT", "deploys the PROJECT to JSHQ.org"
+    # def deploy(project)
+    #   say "Deployment not ready yet", :red
+    # end
+    # 
+    # desc "convert PROJECT", "converts PROJECT into CoffeeScript"
+    # def convert(project)
+    #   say "Conversions not ready yet", :red
+    # end
+    # 
+    # desc "version", "displays the bootcamp version"
+    # map "-v" => :version
+    # def version
+    #   say "Bootcamp Version: #{Bootcamp::VERSION}", :green
+    # end
     
   end
 end
