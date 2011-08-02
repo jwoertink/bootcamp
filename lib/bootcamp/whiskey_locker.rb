@@ -21,7 +21,7 @@ module Bootcamp
     end
     
     def soundoff(words, color) # like you got a pair...
-      "#{COLORS[color]}#{words}#{COLORS[:reset]}"
+      STDOUT.puts "#{COLORS[color]}#{words}#{COLORS[:reset]}"
     end
     
   end

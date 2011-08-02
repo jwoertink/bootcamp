@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bootcamp/parser'
 require 'bootcamp/base'
 require 'bootcamp/armory'
 require 'bootcamp/depot'

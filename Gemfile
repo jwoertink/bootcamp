@@ -2,8 +2,8 @@ source "http://rubygems.org"
 
 gem "rake"
 gem "git"
-gem "thor"
-gem "highline"
+#gem "thor"
+#gem "highline"
 
 group :development do
   gem "rspec", "~> 2.3.0"
