@@ -1,6 +1,5 @@
 module Bootcamp
   
-  
   # This class will be the wrapper for the whole application.
   # It should initialize and set things in motion
   class Base
@@ -15,8 +14,7 @@ module Bootcamp
         parser.version = "Bootcamp v.#{Bootcamp::VERSION}"
         options << "-h" if options.empty?  
         opts = parse_options(options)
-        bootcamp = self.new(opts) if opts[:action]
-        bootcamp.run_command
+        self.new(opts).run_command if opts[:action]
       end
       
       def parser

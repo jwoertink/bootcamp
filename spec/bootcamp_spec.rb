@@ -48,7 +48,8 @@ describe "Bootcamp" do
   
   context "generate" do
     it "should take a project name as an option" do
-      capture(:stdout) { Bootcamp::Base.start(["generate", "test_project"]) }.should =~ /Generating test_project/
+      options << "generate" << "test_project"
+      capture(:stdout) { Bootcamp::Base.start(options) }.should =~ /Generating test_project/
     end
     
     it "should display the project being generated notice"
