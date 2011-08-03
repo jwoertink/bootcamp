@@ -5,4 +5,4 @@ require 'rubygems'
 $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'bootcamp'
 
-Bootcamp::Base.start
+Bootcamp::Base.sound_reveille # Get the work started!

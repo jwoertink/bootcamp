@@ -10,6 +10,7 @@ module Bootcamp
         ["bootstrap", "html", framework].map { |f| File.expand_path(File.join("manifest", "#{f}.rb"), File.dirname(__FILE__)) }
       end
       
+      # Tell the recruit what to do
       def give_command(command, value)
         raise UnknownCommandError unless Recruit.instance_methods(false).include?(command.to_sym)
         Recruit.new.send(command, value)

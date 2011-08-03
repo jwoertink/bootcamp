@@ -12,12 +12,12 @@ describe "Bootcamp" do
   
   it "should display a help menu if no options are given" do
     options.should be_empty
-    capture(:stdout) { Bootcamp::Base.start }.should =~ /Usage: bootcamp \[action\] \[options\]/
+    capture(:stdout) { Bootcamp::Base.sound_reveille }.should =~ /Usage: bootcamp \[action\] \[options\]/
   end
   
   context "help" do
     after(:each) do
-      capture(:stdout) { Bootcamp::Base.start(options) }.should =~ /Usage: bootcamp \[action\] \[options\]/
+      capture(:stdout) { Bootcamp::Base.sound_reveille(options) }.should =~ /Usage: bootcamp \[action\] \[options\]/
       options.clear
     end
     
@@ -33,7 +33,7 @@ describe "Bootcamp" do
   
   context "version" do
     after(:each) do
-      capture(:stdout) { Bootcamp::Base.start(options) }.chomp.should == "Bootcamp v.#{version}"
+      capture(:stdout) { Bootcamp::Base.sound_reveille(options) }.chomp.should == "Bootcamp v.#{version}"
       options.clear
     end
     
@@ -47,9 +47,9 @@ describe "Bootcamp" do
   end
   
   context "generate" do
-    it "should take a project name as an option" do
+    it "should take a project name as an option, and return 'Generating test_project' in yellow text" do
       options << "generate" << "test_project"
-      capture(:stdout) { Bootcamp::Base.start(options) }.should =~ /Generating test_project/
+      capture(:stdout) { Bootcamp::Base.sound_reveille(options) }.should =~ /Generating test_project/
     end
     
     it "should display the project being generated notice"

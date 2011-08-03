@@ -20,8 +20,8 @@ module Bootcamp
       File.expand_path(File.join(File.dirname(__FILE__), '..'))
     end
     
-    def soundoff(words, color) # like you got a pair...
-      STDOUT.puts "#{COLORS[color]}#{words}#{COLORS[:reset]}"
+    def soundoff(words, color = :white) # like you got a pair...
+      puts "#{COLORS[color]}#{words}#{COLORS[:reset]}"
     end
     
   end

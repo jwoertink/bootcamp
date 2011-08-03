@@ -9,7 +9,8 @@ module Bootcamp
     @@parser = Parser.instance
     
     class << self
-      def start(options = ARGV)
+      # Starts off the whole app
+      def sound_reveille(options = ARGV)
         parser.banner = "Usage: bootcamp [action] [options]"
         parser.version = "Bootcamp v.#{Bootcamp::VERSION}"
         options << "-h" if options.empty?  
