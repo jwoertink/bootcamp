@@ -1,6 +1,6 @@
 = bootcamp
 
-Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage it.
+Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage it. The goal will be to create a centralized site (jshq.org) that will allow you to find the javascript plugin you need, and also create new ones to share. Think rubygems.org for JavaScript :)
 
 **This project is in early stages, and may change quite a bit still
 
@@ -9,12 +9,13 @@ Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage
   gem install bootcamp
   
 == Usage
-Brings up the help menu
+Brings up the help menu (tons of ways!)
 
   $ bootcamp
-  $ bootcamp help
+  $ bootcamp help [some_task]
   $ bootcamp -h
-  
+  $ bootcamp -T
+  $ bootcamp --task
 
 Generate a new core javascript plugin
 
@@ -24,11 +25,11 @@ Generate a new core javascript plugin
 
 Specifying a framework (only these available for now)
 
-  $ bootcamp g my_plugin -f jquery
-  $ bootcamp g my_plugin -f prototype
-  $ bootcamp g my_plugin -f dojo
-  $ bootcamp g my_plugin -f mootools
-  $ bootcamp g my_plugin -f midori
+  $ bootcamp g my_plugin -l jquery
+  $ bootcamp g my_plugin -l prototype
+  $ bootcamp g my_plugin -l dojo
+  $ bootcamp g my_plugin -l mootools
+  $ bootcamp g my_plugin -l midori
 
 
 Specifying a testing suite (only these available for now)
@@ -43,9 +44,9 @@ Specifying a testing suite (only these available for now)
 
 Promoting will allow you to update the version of your plugin.
 
-  $ bootcamp promote my_plugin -l patch
-  $ bootcamp promote my_plugin -l minor
-  $ bootcamp promote my_plugin -l major
+  $ bootcamp promote my_plugin --level patch
+  $ bootcamp promote my_plugin --level minor
+  $ bootcamp promote my_plugin --level major
 
 
 Compression will allow you to minify your scripts for production use.

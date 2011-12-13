@@ -6,10 +6,13 @@ module Bootcamp
     
     class << self
       
+      # TODO: make this dynamically pull from the vendor directory
       def available_frameworks
-        ["core", "jquery", "prototype", "dojo", "mootools", "midori"].join(', ')
+        # Why is Bootcamp.root not available here?
+        ["core", "jquery", "prototype", "dojo", "mootools", "midori", "yui"].join(', ')
       end
 
+      # TODO: make this dynamically pull from the vendor directory
       def available_test_suites
         ["jasmine", "jspec", "qunit"].join(', ')
       end

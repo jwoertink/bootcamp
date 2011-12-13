@@ -18,10 +18,11 @@ module Bootcamp
     end
     
     desc "promote PROJECT [LEVEL]", "give your PROJECT a promotion updating the verion by patch, minor, or major"
-    method_options %w(level -l) => "patch"
+    method_option :grade, :aliases => %w(-g), :default  => :patch, :desc => "GRADE options: patch, minor, major"
     def promote(project)
       # :patch, :minor, :major
       level = options[:level]
+      check_project_exists!(project)
       
       say "Promotions not ready yet", :red
     end
