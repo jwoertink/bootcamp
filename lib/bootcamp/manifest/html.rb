@@ -9,7 +9,7 @@ create_file "#{@project}/index.html" do
   <body>
     <h1>Hello World</h1>
     <button onclick="">TEST</button>
-    <script charset="utf-8" src="vendor/#{options[:framework]}.js"></script>
+    <script charset="utf-8" src="vendor/#{options[:library]}.js"></script>
     <script charset="utf-8" src="lib/#{@project}.js"></script>
   </body>
 </html>
