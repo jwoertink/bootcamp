@@ -4,6 +4,8 @@ module Bootcamp
   # It should initialize and set things in motion
   class Base
     extend Bootcamp
+    include Thor::Actions
+    
     attr_accessor :options
     
     @@parser = Parser.instance
