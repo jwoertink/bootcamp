@@ -32,14 +32,25 @@ module Bootcamp
       say "Compression not ready yet", :red
     end
     
-    desc "deploy PROJECT", "deploys the PROJECT to JSHQ.org"
-    def deploy(project)
-      say "Deployment not ready yet", :red
-    end
-    
     desc "convert PROJECT", "converts PROJECT into CoffeeScript"
     def convert(project)
       say "Conversions not ready yet", :red
+    end
+    
+    desc "deploy PROJECT", "deploys the PROJECT to JSHQ.org"
+    def deploy(project)
+      # ensure project meets all requirements
+      # Connect to jshq.org
+      # upload project.
+      say "Deployment not ready yet", :red
+    end
+    
+    desc "install PLUGIN", "searches jshq.org for PLUGIN, and downloads it"
+    def install(plugin)
+      # connect to jshq.org
+      # use search API to find plugin
+      # download plugin
+      say "Installing plugins not ready yet", :red
     end
     
     desc "-v | --version", "displays the bootcamp version"
