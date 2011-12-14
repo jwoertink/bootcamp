@@ -4,11 +4,11 @@ create_file "#{@project}/metadata.json" do
 {
   "name": "#{@project}",
   "version": "0.0.1",
-  "authors": "",
-  "summary": "",
-  "description": "",
-  "website": "",
-  "documentation": ""
+  "authors": "Who wrote this?",
+  "summary": "A short summary.",
+  "description": "A longer description.",
+  "website": "URL for this plugin.",
+  "documentation": "URL for the documentation."
 }
 JSON
 end
