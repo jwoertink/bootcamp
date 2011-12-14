@@ -1,4 +1,5 @@
 require "tempfile"
+require "open-uri"
 require "zlib"
 require "archive/tar/minitar"
 
@@ -51,16 +52,23 @@ module Bootcamp
         # TODO: Puts if the project already exists.
         connection = Faraday.new(:url => jshq_url)
         res = connection.post do |req|
-          req.url("/packages")
+          req.url("/packages?auth_token=#{authentication_token}")
           req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
           req.body = { :package => {
             :name => project_metadata["name"],
-            :versions => [{
+            :summary => project_metadata["summary"],
+            :description => project_metadata["description"],
+            :versions_attributes  => [{
               :number => project_metadata["version"],
+              :authors => project_metadata["authors"],
+              :website => project_metadata["website"],
+              :documentation => project_metadata["documentation"],
               :packaged_file => Faraday::UploadIO.new("#{project_metadata["name"]}.tgz", "application/x-gzip")
             }]
           }}
         end
+      rescue => e
+        puts e.message
       ensure
         File.unlink("#{project_metadata["name"]}.tgz")
       end
@@ -68,12 +76,27 @@ module Bootcamp
       say "#{project_metadata["name"]} (#{project_metadata["version"]}) deployed", :green
     end
 
-    desc "install PLUGIN", "searches jshq.org for PLUGIN, and downloads it"
-    def install(plugin)
-      # connect to jshq.org
-      # use search API to find plugin
-      # download plugin
+    desc "search QUERY", "searches jshq.org for QUERY"
+    def search(query)
+      connection = Faraday.new(:url => jshq_url)
+      res = connection.get do |req|
+        req.url("/packages/search?q=#{query}")
+        req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+      end
 
+      packages = JSON.parse(res.body)
+
+      say("No plugins where found for '#{query}'", :red) if packages.empty?
+
+      packages.each do |package|
+        versions = package["versions"].collect { |v| v["number"] }.join(", ")
+        say("#{package["name"]} (#{versions})")
+      end
+    end
+
+    desc "install PLUGIN", "installs PLUGIN from jsqh.org"
+    method_option :version, :aliases => %w(-v), :desc => "VERSION of the plugin to install"
+    def install(plugin)
       connection = Faraday.new(:url => jshq_url)
       res = connection.get do |req|
         req.url("/packages/search?q=#{plugin}")
@@ -83,19 +106,14 @@ module Bootcamp
       package = JSON.parse(res.body).first
 
       res = connection.get do |req|
-        req.url("/packages/#{package["slug"]}/download")
+        url = "/packages/#{package["slug"]}/download"
+        url += "?version=#{version}" if version
+        req.url(url)
         req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
       end
 
-      file = Tempfile.new(plugin)
-      begin
-        file.write(res.body)
-        file.rewind
-        Minitar.unpack(Zlib::GzipReader.new(file), ".")
-      ensure
-        file.close
-        file.unlink
-      end
+      url = JSON.parse(res.body)["url"]
+      Minitar.unpack(Zlib::GzipReader.new(open(url)), ".")
 
       say "#{plugin} installed", :green
     end
