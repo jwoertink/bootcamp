@@ -1,4 +1,6 @@
 require 'thor'
+require 'json'
+require 'faraday'
 require 'bootcamp/base'
 require 'bootcamp/depot'
 require 'bootcamp/armory'

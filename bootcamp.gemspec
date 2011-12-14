@@ -19,6 +19,9 @@ Gem::Specification.new do |s|
   s.add_dependency('git')
   s.add_dependency('thor')
   s.add_dependency('highline')
+  s.add_dependency('minitar')
+  s.add_dependency('faraday')
+  s.add_dependency('json')
 
   s.add_development_dependency('rake')
   s.add_development_dependency('rspec', '~> 2.5')
