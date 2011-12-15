@@ -45,32 +45,53 @@ module Bootcamp
 
     desc "deploy", "deploys the PROJECT to JSHQ.org"
     def deploy
+      connection = Faraday.new(:url => jshq_url)
+      res = connection.get do |req|
+        req.url("/packages/search?q=#{project_metadata["name"]}")
+        req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+      end
+      packages = JSON.parse(res.body)
+
       begin
-        tgz = Zlib::GzipWriter.new(File.open("#{project_metadata["name"]}.tgz", "wb"))
+        tgz = Zlib::GzipWriter.new(File.open("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz", "wb"))
         Minitar.pack("lib", tgz)
 
-        # TODO: Puts if the project already exists.
-        connection = Faraday.new(:url => jshq_url)
-        res = connection.post do |req|
-          req.url("/packages?auth_token=#{authentication_token}")
-          req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
-          req.body = { :package => {
-            :name => project_metadata["name"],
-            :summary => project_metadata["summary"],
-            :description => project_metadata["description"],
-            :versions_attributes  => [{
-              :number => project_metadata["version"],
-              :authors => project_metadata["authors"],
-              :website => project_metadata["website"],
-              :documentation => project_metadata["documentation"],
-              :packaged_file => Faraday::UploadIO.new("#{project_metadata["name"]}.tgz", "application/x-gzip")
-            }]
-          }}
+        connection = Faraday.new(:url => jshq_url) do |builder|
+          builder.request :multipart
+          builder.request :url_encoded
+          builder.request :json
+          builder.adapter :net_http
         end
-      rescue => e
-        puts e.message
+
+        payload = { :package => {
+          :name => project_metadata["name"],
+          :summary => project_metadata["summary"],
+          :description => project_metadata["description"],
+          :versions_attributes  => [{
+            :number => project_metadata["version"],
+            :authors => project_metadata["authors"],
+            :website => project_metadata["website"],
+            :documentation => project_metadata["documentation"],
+            :packaged_file => Faraday::UploadIO.new("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz", "application/x-gzip")
+          }]
+        }}
+
+        if packages.compact.empty?
+          res = connection.post do |req|
+            req.url("/packages?auth_token=#{authentication_token}")
+            req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+            req.body = payload
+          end
+
+        else
+          res = connection.put do |req|
+            req.url("/packages/#{packages[0]["slug"]}?auth_token=#{authentication_token}")
+            req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+            req.body = payload
+          end
+        end
       ensure
-        File.unlink("#{project_metadata["name"]}.tgz")
+        File.unlink("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz")
       end
 
       say "#{project_metadata["name"]} (#{project_metadata["version"]}) deployed", :green
