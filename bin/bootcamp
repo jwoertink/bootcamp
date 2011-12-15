@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 
 require 'rubygems'
+if File.exist?('Gemfile')
+  require 'bundler'
+  Bundler.setup(:default)
+end
 $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'bootcamp'
 
-Bootcamp::Base.sound_reveille # Get the work started!
+
+Bootcamp::Worker.start # Get the work started!
