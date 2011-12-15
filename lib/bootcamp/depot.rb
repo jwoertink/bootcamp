@@ -11,11 +11,14 @@ module Bootcamp
       def manifest(filename)
         File.expand_path(File.join("manifest", "#{filename}.rb"), File.dirname(__FILE__))
       end
-
-      # Should make sure that there is a folder named PROJECT
-      # maybe also check manifest? If PROJECT doesn't exist, then raise an error
-      def check_project_exists!
-        true
+      
+      # Checks for a metadata.json file in the current directory
+      def in_plugin_directory?
+        File.exists?("metadata.json")
+      end
+      
+      def ensure_plugin_exists!
+        raise say("Must be in a plugin directory", :red) unless in_plugin_directory?
       end
 
       # Endpoint url based on environment

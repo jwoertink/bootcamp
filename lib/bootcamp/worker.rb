@@ -3,7 +3,10 @@ require "open-uri"
 require "zlib"
 require "archive/tar/minitar"
 
+# TODO: Abstract everything out of here and clean it up!
 module Bootcamp
+  
+  # Worker is where all the heavy lifting is done
   class Worker < Bootcamp::Depot
     include Archive::Tar
     include Depot::Helpers
@@ -29,8 +32,21 @@ module Bootcamp
     def promote
       # :patch, :minor, :major
       level = options[:level]
+      ensure_plugin_exists!
+      metadata = JSON.parse(File.read("metadata.json"))
+      current_ver = metadata["version"].split(".")
+      case level.to_s.downcase
+      when "patch"
+        current_ver[2] += 1
+      when "minor"
+        current_ver[1] += 1
+      when "major"
+        current_ver[0] += 1
+      end
+      metadata["version"] = current_ver.join(".")
+      # convert metadata into proper string, and write to file.
       
-      say "Promotions not ready yet", :red
+      say("Promoted #{metadata["name"]} to #{metadata["version"]}", :green)
     end
 
     desc "compress", "minify the scripts for PLUGIN"
