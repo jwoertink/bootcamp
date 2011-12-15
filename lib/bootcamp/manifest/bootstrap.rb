@@ -17,7 +17,7 @@ end
 create_file File.join(@project, 'LICENSE') do
 <<-DOC
 ----------------------------------------------------------------------------
-#{@project} #{options[:framework]} plugin
+#{@project} #{options[:library]} plugin
 v 0.0.1
 Dual licensed under the MIT and GPL licenses.
 ----------------------------------------------------------------------------
@@ -46,7 +46,7 @@ DOC
 end
 empty_directory File.join(@project, 'vendor')
 empty_directory File.join(@project, 'tests')
-library = "#{options[:framework]}.js"
+library = "#{options[:library]}.js"
 copy_file File.join(Bootcamp.root, 'vendor', library), File.join(@project, 'vendor', library)
-test_suite = options[:test_suite]
+test_suite = "#{options[:test_suite]}"
 directory File.join(Bootcamp.root, 'vendor', 'test_suites', test_suite), File.join(@project, 'tests', test_suite)
