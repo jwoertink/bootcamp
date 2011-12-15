@@ -20,11 +20,7 @@ module Bootcamp
 
       # Endpoint url based on environment
       def jshq_url
-        if ENV["BOOTCAMP_ENV"] == "development"
-          "http://localhost:3000"
-        else
-          "http://jshq.org"
-        end
+        @source_url ||= JSON.parse(File.read(File.join(ENV["HOME"], ".jshq")))["source"]
       end
 
       # Reads project metadata file
