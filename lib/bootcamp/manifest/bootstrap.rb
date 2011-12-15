@@ -6,6 +6,7 @@ create_file File.join(@project, '.gitignore') do
 tmtags
 *.swp
 **/Thumbs.db
+/pkg
 GIT
 end
 create_file File.join(@project, "README") do
