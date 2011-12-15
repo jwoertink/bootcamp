@@ -57,7 +57,7 @@ module Bootcamp
         Minitar.pack("lib", tgz)
 
         connection = Faraday.new(:url => jshq_url) do |builder|
-          builder.request :multipart
+          builder.use Faraday::Request::NestedMultipart
           builder.request :url_encoded
           builder.request :json
           builder.adapter :net_http

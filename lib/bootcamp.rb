@@ -6,6 +6,7 @@ require 'bootcamp/depot'
 require 'bootcamp/armory'
 require 'bootcamp/worker'
 require 'bootcamp/version'
+require 'bootcamp/nested_multipart'
 
 module Bootcamp
   
