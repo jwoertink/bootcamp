@@ -14,7 +14,7 @@ module Bootcamp
 
       # Should make sure that there is a folder named PROJECT
       # maybe also check manifest? If PROJECT doesn't exist, then raise an error
-      def check_project_exists!(project)
+      def check_project_exists!
         true
       end
 

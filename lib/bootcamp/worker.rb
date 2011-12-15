@@ -10,12 +10,12 @@ module Bootcamp
 
     source_root File.dirname(__FILE__)
 
-    desc "generate [PROJECT]", "creates a new project with the name PROJECT"
-    map "g" => :generate
+    desc "new PLUGIN", "creates a new project with the name PLUGIN"
+    map "n" => :new
     method_option :library, :aliases => %w(-l), :default => :core, :desc => "LIBRARY options: #{available_frameworks}"
     method_option :test_suite, :aliases => %w(-t), :default => :jasmine, :desc => "TEST_SUITE options: #{available_test_suites}"
-    def generate(project)
-      @project = project
+    def new(plugin_name)
+      @project = plugin_name
       say "Generating #{@project} plugin", :green
       apply manifest("metadata")
       apply manifest("bootstrap")
@@ -24,26 +24,26 @@ module Bootcamp
       armory = Armory.new
     end
 
-    desc "promote [LEVEL]", "give your PROJECT a promotion updating the verion by patch, minor, or major"
+    desc "promote [LEVEL]", "give your PLUGIN a promotion updating the verion by patch, minor, or major"
     method_option :grade, :aliases => %w(-g), :default  => :patch, :desc => "GRADE options: patch, minor, major"
-    def promote(project)
+    def promote
       # :patch, :minor, :major
       level = options[:level]
-
+      
       say "Promotions not ready yet", :red
     end
 
-    desc "compress", "minify the scripts for PROJECT"
+    desc "compress", "minify the scripts for PLUGIN"
     def compress
       say "Compression not ready yet", :red
     end
 
-    desc "convert", "converts PROJECT into CoffeeScript"
+    desc "convert", "converts PLUGIN into CoffeeScript"
     def convert
       say "Conversions not ready yet", :red
     end
 
-    desc "deploy", "deploys the PROJECT to JSHQ.org"
+    desc "deploy", "deploys the PLUGIN to JSHQ.org"
     def deploy
       connection = Faraday.new(:url => jshq_url)
       res = connection.get do |req|

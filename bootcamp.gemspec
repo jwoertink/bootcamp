@@ -6,7 +6,7 @@ require "bootcamp/version"
 Gem::Specification.new do |s|
   s.name = "bootcamp"
   s.version = Bootcamp::VERSION
-  s.authors = ["Jeremy Woertink <jeremywoertink@gmail.com>"]
+  s.authors = ["Jeremy Woertink <jeremywoertink@gmail.com>", "Russ Smith <russ@bashme.org>"]
   s.homepage = "http://jshq.org"
   s.summary = %q{Check out the README file for more info}
   s.description = %q{Check out the README file for more info}

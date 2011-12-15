@@ -2,7 +2,9 @@
 
 Bootcamp is a gem to help you create one hell of a JavaScript Plugin, and manage it. The goal will be to create a centralized site (jshq.org) that will allow you to find the javascript plugin you need, and also create new ones to share. Think rubygems.org for JavaScript :)
 
-**This project is in early stages, and may change quite a bit still
+Bootcamp will provide you a standard format for creating a javascript plugin with the necessary library, and testing suite.
+
+**This project is in early stages, and may change quite a bit still, but feel free to fork, and help out!
 
 = Installation
 
@@ -17,46 +19,65 @@ Brings up the help menu (tons of ways!)
   $ bootcamp -T
   $ bootcamp --task
 
+
+Check your current version of bootcamp
+
+  $ bootcamp -v
+  $ bootcamp --version
+
 Generate a new core javascript plugin
 
-  $ bootcamp generate some_plugin_name
-  $ bootcamp g some_cool_plugin
+  $ bootcamp new some_plugin_name
+  $ bootcamp n my_cool_plugin
 
 
-Specifying a framework (only these available for now)
+Specifying a library (only these available for now)
 
-  $ bootcamp g my_plugin -l jquery
-  $ bootcamp g my_plugin -l prototype
-  $ bootcamp g my_plugin -l dojo
-  $ bootcamp g my_plugin -l mootools
-  $ bootcamp g my_plugin -l midori
+  $ bootcamp new my_plugin -l core      # This is the default. It's just core JavaScript
+  $ bootcamp new my_plugin -l jquery
+  $ bootcamp new my_plugin -l prototype
+  $ bootcamp new my_plugin -l dojo
+  $ bootcamp new my_plugin -l mootools
+  $ bootcamp new my_plugin -l midori
+  $ bootcamp new my_plugin -l yui
 
 
 Specifying a testing suite (only these available for now)
 
-  $ bootcamp g my_plugin -t jasmine    # This is the default test suite
-  $ bootcamp g my_plugin -t jspec
-  $ bootcamp g my_plugin -t qunit
+  $ bootcamp new my_plugin -t jasmine    # This is the default test suite
+  $ bootcamp new my_plugin -t jspec
+  $ bootcamp new my_plugin -t qunit
   
+
+Deploying your plugin to JSHQ.org
+
+  $ cd my_plugin
+  $ bootcamp deploy
+  
+
+Searching for a new plugin to use
+
+  $ bootcamp search some_cool_jquery_plugin
+  
+
+Downloading and installing a new plugin
+
+  $ bootcamp install some_cool_jquery_plugin
+
 
 == The future
 **These features are only future ideas. None of these are implemented yet
 
 Promoting will allow you to update the version of your plugin.
 
-  $ bootcamp promote my_plugin --level patch
-  $ bootcamp promote my_plugin --level minor
-  $ bootcamp promote my_plugin --level major
+  $ bootcamp promote --grade patch
+  $ bootcamp promote -g minor
+  $ bootcamp promote -g major
 
 
 Compression will allow you to minify your scripts for production use.
 
   $ bootcamp compress my_plugin
-  
-
-Deployment will allow you to ship your plugin off to the JavaScript Headquarters (JSHQ)
-
-  $ bootcamp deploy my_plugin
   
 
 Converting will allow you to create a CoffeeScript version of your plugin
@@ -75,7 +96,7 @@ Converting will allow you to create a CoffeeScript version of your plugin
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 == Copyright
-
-Copyright (c) 2011 Jeremy Woertink. See LICENSE.txt for
+This project provided by members of the Las Vegas Ruby Group
+Copyright (c) 2011 Jeremy Woertink & Russ Smith. See LICENSE.txt for
 further details.
 
