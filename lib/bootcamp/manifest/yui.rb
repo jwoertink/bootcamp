@@ -1,5 +1,5 @@
 # This is the yui template
-append_file "#{@project}/lib/#{@project}.js" do
+append_file File.join(@project, 'lib', "#{@project}.js") do
 <<-JS
 
 // A plugin class designed to animate Widget's show and hide methods.

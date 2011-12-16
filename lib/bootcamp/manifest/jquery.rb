@@ -1,5 +1,5 @@
 # This is the jquery template
-append_file "#{@project}/lib/#{@project}.js" do
+append_file File.join(@project, 'lib', "#{@project}.js") do
 <<-JS
 
 // the semi-colon before function invocation is a safety net against concatenated 
@@ -41,6 +41,7 @@ append_file "#{@project}/lib/#{@project}.js" do
         // Place initialization logic here
         // You already have access to the DOM element and the options via the instance, 
         // e.g., this.element and this.options
+        alert('Hello, World!');
     };
 
     // A really lightweight plugin wrapper around the constructor, 
@@ -54,6 +55,13 @@ append_file "#{@project}/lib/#{@project}.js" do
     }
 
 })( jQuery, window, document );
+
+// Initialize plugin
+$(function(){
+  $('#testbtn').click(function() {
+    $('#container').#{@project}();
+  });
+});
 
 JS
 end

@@ -1,5 +1,5 @@
 # This is the mootols template
-append_file "#{@project}/lib/#{@project}.js" do
+append_file File.join(@project, 'lib', "#{@project}.js") do
 <<-JS
 
 var #{@project.capitalize} = new Class({

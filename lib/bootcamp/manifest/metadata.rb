@@ -1,5 +1,5 @@
 # This is the metadata template
-create_file "#{@project}/metadata.json" do
+create_file File.join(@project, 'metadata.json') do
 <<-JSON
 {
   "name": "#{@project}",

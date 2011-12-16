@@ -1,9 +1,9 @@
 plugin manifest
 
 .gitignore
-VERSION
 README
 LICENSE.txt
+metadata.json
 lib
 - plugin
 vendor
