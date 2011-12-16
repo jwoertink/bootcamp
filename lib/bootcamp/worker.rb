@@ -24,7 +24,7 @@ module Bootcamp
       apply manifest("bootstrap")
       apply manifest("html")
       apply manifest(options[:library])
-      armory = Armory.new
+      armory = Armory.new(File.join(Dir.pwd, @project))
     end
 
     desc "promote [LEVEL]", "give your PLUGIN a promotion updating the verion by patch, minor, or major"
@@ -41,9 +41,9 @@ module Bootcamp
         current_ver[0] += 1
       end
       project_metadata["version"] = current_ver.join(".")
-      
+
       js = hash_as_pretty_json_string(project_metadata)
-      
+
       File.open("metadata.json", "w+") do |f|
         f.write(js)
       end
