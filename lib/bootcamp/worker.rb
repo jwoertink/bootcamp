@@ -30,12 +30,10 @@ module Bootcamp
     desc "promote [LEVEL]", "give your PLUGIN a promotion updating the verion by patch, minor, or major"
     method_option :grade, :aliases => %w(-g), :default  => :patch, :desc => "GRADE options: patch, minor, major"
     def promote
-      # :patch, :minor, :major
-      level = options[:level]
       ensure_plugin_exists!
       metadata = JSON.parse(File.read("metadata.json"))
-      current_ver = metadata["version"].split(".")
-      case level.to_s.downcase
+      current_ver = metadata["version"].split(".").map(&:to_i)
+      case options[:grade].to_s.downcase
       when "patch"
         current_ver[2] += 1
       when "minor"
@@ -44,8 +42,12 @@ module Bootcamp
         current_ver[0] += 1
       end
       metadata["version"] = current_ver.join(".")
-      # convert metadata into proper string, and write to file.
       
+      js = hash_as_pretty_json_string(metadata)
+      
+      File.open("metadata.json", "w+") do |f|
+        f.write(js)
+      end
       say("Promoted #{metadata["name"]} to #{metadata["version"]}", :green)
     end
 
@@ -61,6 +63,7 @@ module Bootcamp
 
     desc "deploy", "deploys the PLUGIN to JSHQ.org"
     def deploy
+      ensure_plugin_exists!
       connection = Faraday.new(:url => jshq_url)
       res = connection.get do |req|
         req.url("/packages/search?q=#{project_metadata["name"]}")

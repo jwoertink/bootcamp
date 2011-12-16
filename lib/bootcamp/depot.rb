@@ -18,7 +18,7 @@ module Bootcamp
       end
       
       def ensure_plugin_exists!
-        raise say("Must be in a plugin directory", :red) unless in_plugin_directory?
+        say("Must be in a plugin directory", :red) and exit unless in_plugin_directory?
       end
 
       # Endpoint url based on environment
@@ -29,6 +29,16 @@ module Bootcamp
       # Reads project metadata file
       def project_metadata
         @metadata ||= JSON.parse(File.read("metadata.json"))
+      end
+      
+      #Takes a hash and returns it as a pretty formatted JSON string
+      def hash_as_pretty_json_string(hash)
+        js = "{\n"
+        js << hash.each_pair.map do |k, v|
+          "\t\"#{k}\": \"#{v}\""
+        end.join(",\n")
+        
+        js << "\n}"
       end
     end
   end
