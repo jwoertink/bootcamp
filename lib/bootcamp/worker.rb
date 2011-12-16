@@ -31,8 +31,7 @@ module Bootcamp
     method_option :grade, :aliases => %w(-g), :default  => :patch, :desc => "GRADE options: patch, minor, major"
     def promote
       ensure_plugin_exists!
-      metadata = JSON.parse(File.read("metadata.json"))
-      current_ver = metadata["version"].split(".").map(&:to_i)
+      current_ver = project_metadata["version"].split(".").map(&:to_i)
       case options[:grade].to_s.downcase
       when "patch"
         current_ver[2] += 1
@@ -41,14 +40,14 @@ module Bootcamp
       when "major"
         current_ver[0] += 1
       end
-      metadata["version"] = current_ver.join(".")
+      project_metadata["version"] = current_ver.join(".")
       
-      js = hash_as_pretty_json_string(metadata)
+      js = hash_as_pretty_json_string(project_metadata)
       
       File.open("metadata.json", "w+") do |f|
         f.write(js)
       end
-      say("Promoted #{metadata["name"]} to #{metadata["version"]}", :green)
+      say("Promoted #{project_metadata["name"]} to #{project_metadata["version"]}", :green)
     end
 
     desc "compress", "minify the scripts for PLUGIN"
@@ -61,6 +60,16 @@ module Bootcamp
       say "Conversions not ready yet", :red
     end
 
+    desc "package", "packages the plugin into pkg/"
+    def package
+      FileUtils.mkdir("pkg") unless Dir.exists?("pkg")
+      file_name = "pkg/#{project_metadata["name"]}-#{project_metadata["version"]}.tgz"
+      tgz = Zlib::GzipWriter.new(File.open(file_name, "wb"))
+      Minitar.pack(`git ls-files`.split("\n"), tgz)
+
+      say("Packaging #{project_metadata["name"]} at #{file_name}", :green)
+    end
+
     desc "deploy", "deploys the PLUGIN to JSHQ.org"
     def deploy
       ensure_plugin_exists!
@@ -71,46 +80,41 @@ module Bootcamp
       end
       packages = JSON.parse(res.body)
 
-      begin
-        tgz = Zlib::GzipWriter.new(File.open("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz", "wb"))
-        Minitar.pack("lib", tgz)
+      package
 
-        connection = Faraday.new(:url => jshq_url) do |builder|
-          builder.use Faraday::Request::NestedMultipart
-          builder.request :url_encoded
-          builder.request :json
-          builder.adapter :net_http
+      connection = Faraday.new(:url => jshq_url) do |builder|
+        builder.use Faraday::Request::NestedMultipart
+        builder.request :url_encoded
+        builder.request :json
+        builder.adapter :net_http
+      end
+
+      payload = { :package => {
+        :name => project_metadata["name"],
+        :summary => project_metadata["summary"],
+        :description => project_metadata["description"],
+        :versions_attributes  => [{
+          :number => project_metadata["version"],
+          :authors => project_metadata["authors"],
+          :website => project_metadata["website"],
+          :documentation => project_metadata["documentation"],
+          :packaged_file => Faraday::UploadIO.new("pkg/#{project_metadata["name"]}-#{project_metadata["version"]}.tgz", "application/x-gzip")
+        }]
+      }}
+
+      if packages.compact.empty?
+        res = connection.post do |req|
+          req.url("/packages?auth_token=#{authentication_token}")
+          req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+          req.body = payload
         end
 
-        payload = { :package => {
-          :name => project_metadata["name"],
-          :summary => project_metadata["summary"],
-          :description => project_metadata["description"],
-          :versions_attributes  => [{
-            :number => project_metadata["version"],
-            :authors => project_metadata["authors"],
-            :website => project_metadata["website"],
-            :documentation => project_metadata["documentation"],
-            :packaged_file => Faraday::UploadIO.new("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz", "application/x-gzip")
-          }]
-        }}
-
-        if packages.compact.empty?
-          res = connection.post do |req|
-            req.url("/packages?auth_token=#{authentication_token}")
-            req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
-            req.body = payload
-          end
-
-        else
-          res = connection.put do |req|
-            req.url("/packages/#{packages[0]["slug"]}?auth_token=#{authentication_token}")
-            req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
-            req.body = payload
-          end
+      else
+        res = connection.put do |req|
+          req.url("/packages/#{packages[0]["slug"]}?auth_token=#{authentication_token}")
+          req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
+          req.body = payload
         end
-      ensure
-        File.unlink("#{project_metadata["name"]}-#{project_metadata["version"]}.tgz")
       end
 
       say "#{project_metadata["name"]} (#{project_metadata["version"]}) deployed", :green
