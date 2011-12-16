@@ -19,7 +19,11 @@ module Bootcamp
 
       # Reads project metadata file
       def project_metadata
-        @metadata ||= JSON.parse(File.read("metadata.json"))
+        if in_plugin_directory?
+          @metadata ||= JSON.parse(File.read("metadata.json"))
+        else
+          nil
+        end
       end
 
       # This returns the path to the manifest file FILENAME

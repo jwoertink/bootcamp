@@ -4,6 +4,7 @@ create_file "#{@project}/metadata.json" do
 {
   "name": "#{@project}",
   "version": "0.0.1",
+  "library": "#{options[:library]}",
   "authors": "Who wrote this?",
   "summary": "A short summary.",
   "description": "A longer description.",

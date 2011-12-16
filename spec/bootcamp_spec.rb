@@ -47,7 +47,7 @@ describe "Bootcamp" do
   end
   
   # Tests seem to hang in this area.....
-  context "generate" do
+  context "new" do
     after(:each) do
       options.clear
     end

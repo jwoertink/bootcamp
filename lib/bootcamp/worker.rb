@@ -62,6 +62,7 @@ module Bootcamp
 
     desc "package", "packages the plugin into pkg/"
     def package
+      ensure_plugin_exists!
       FileUtils.mkdir("pkg") unless Dir.exists?("pkg")
       file_name = "pkg/#{project_metadata["name"]}-#{project_metadata["version"]}.tgz"
       tgz = Zlib::GzipWriter.new(File.open(file_name, "wb"))
