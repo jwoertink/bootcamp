@@ -152,13 +152,13 @@ module Bootcamp
 
       res = connection.get do |req|
         url = "/packages/#{package["slug"]}/download"
-        url += "?version=#{version}" if version
+        url += "?version=#{options[:version]}" if options[:version]
         req.url(url)
         req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
       end
 
       url = JSON.parse(res.body)["url"]
-      Minitar.unpack(Zlib::GzipReader.new(open(url)), ".")
+      Minitar.unpack(Zlib::GzipReader.new(open(url)), package["slug"])
 
       say "#{plugin} installed", :green
     end
