@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-$:.push File.expand_path("../lib", __FILE__)
-require "bootcamp/version"
+#$:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "bootcamp"
-  s.version = Bootcamp::VERSION
+  s.version = '0.1.6'
   s.authors = ["Jeremy Woertink <jeremywoertink@gmail.com>", "Russ Smith <russ@bashme.org>"]
   s.homepage = "http://jshq.org"
   s.summary = %q{Check out the README file for more info}

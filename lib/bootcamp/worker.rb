@@ -140,7 +140,7 @@ module Bootcamp
     end
 
     desc "install PLUGIN", "installs PLUGIN from jsqh.org"
-    method_option :version, :aliases => %w(-v), :desc => "VERSION of the plugin to install"
+    method_option :vorsion, :aliases => %w(-x), :desc => "VERSION of the plugin to install"
     def install(plugin)
       connection = Faraday.new(:url => jshq_url)
       res = connection.get do |req|
@@ -152,7 +152,7 @@ module Bootcamp
 
       res = connection.get do |req|
         url = "/packages/#{package["slug"]}/download"
-        url += "?version=#{options[:version]}" if options[:version]
+        url += "?version=#{options[:vorsion]}" if options[:vorsion]
         req.url(url)
         req.headers["ACCEPT"] = "application/json,application/vnd.jshq;ver=1"
       end
