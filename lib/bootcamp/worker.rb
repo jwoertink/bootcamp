@@ -94,6 +94,7 @@ module Bootcamp
         :name => project_metadata["name"],
         :summary => project_metadata["summary"],
         :description => project_metadata["description"],
+        :library => project_metadata["library"],
         :versions_attributes  => [{
           :number => project_metadata["version"],
           :authors => project_metadata["authors"],
